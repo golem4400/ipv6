@@ -14,7 +14,7 @@ gen64() {
 	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64)"
 }
 install_3proxy() {
-    echo "installing 3proxy"
+    echo "Đang cài đặt 3proxy"
     mkdir -p /3proxy
     cd /3proxy
     URL="https://github.com/z3APA3A/3proxy/archive/0.9.3.tar.gz"
@@ -101,7 +101,7 @@ gen_ifconfig() {
 $(awk -F "/" '{print "ifconfig '$main_interface' inet6 add " $5 "/64"}' ${WORKDATA})
 EOF
 }
-echo "installing apps"
+echo "Đang cài đặt ứng dụng"
 yum -y install gcc net-tools bsdtar zip make >/dev/null
 
 install_3proxy
@@ -115,9 +115,11 @@ IP4=$(curl -4 -s icanhazip.com)
 IP6=$(curl -6 -s icanhazip.com | cut -f1-4 -d':')
 
 echo "Internal ip = ${IP4}. Exteranl sub for ip6 = ${IP6}"
+echo "Bạn muốn tạo bao nhiêu proxy? Gõ vào số lượng:"
+read COUNT
 
 FIRST_PORT=10000
-LAST_PORT=11000
+LAST_PORT=$(($FIRST_PORT + $COUNT))
 
 gen_data >$WORKDIR/data.txt
 gen_iptables >$WORKDIR/boot_iptables.sh
