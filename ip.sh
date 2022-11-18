@@ -55,6 +55,9 @@ timeouts 1 5 30 60 180 1800 15 60
 setgid 65535
 setuid 65535
 stacksize 6291456 
+cache 65536
+nscache 65536
+nscache6 65536
 flush
 auth none
 
@@ -79,7 +82,7 @@ upload_proxy() {
     zip --password $PASS proxy.zip proxy.txt
     URL=$(curl -F "file=@proxy.zip" https://file.io)
 
-    echo "Proxy is ready! Format IP:PORT:LOGIN:PASS"
+    echo "Proxy đã sẵn sàng! Định dạng IP:PORT:LOGIN:PASS"
     echo "Download zip archive from: ${URL}"
     echo "Password: ${PASS}"
 
@@ -114,8 +117,8 @@ mkdir $WORKDIR && cd $_
 IP4=$(curl -4 -s icanhazip.com)
 IP6=$(curl -6 -s icanhazip.com | cut -f1-4 -d':')
 
-echo "Internal ip = ${IP4}. Exteranl sub for ip6 = ${IP6}"
-echo "Bạn muốn tạo bao nhiêu proxy? Gõ vào số lượng:"
+echo "Internal ip = ${IP4}. IPv6 mở rộng = ${IP6}"
+echo "Bạn muốn tạo bao nhiêu proxy? Điền vào số lượng:"
 read COUNT
 
 FIRST_PORT=10000
