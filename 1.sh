@@ -28,11 +28,14 @@ install_3proxy() {
 gen_3proxy() {
     cat <<EOF
 daemon
-maxconn 1000
+maxconn 10000
 nscache 65536
 timeouts 1 5 30 60 180 1800 15 60
 setgid 65535
 setuid 65535
+cache 65536
+nscache 65536
+nscache6 65536
 flush
 auth none
 
@@ -93,7 +96,7 @@ IP6=$(curl -6 -s icanhazip.com | cut -f1-4 -d':')
 
 echo "Internal ip = ${IP4}. Exteranl sub for ip6 = ${IP6}"
 
-echo "How many proxy do you want to create? Example 500"
+echo "Bạn muốn tạo bao nhiêu proxy? Gõ vào số lượng:"
 read COUNT
 
 FIRST_PORT=10000
