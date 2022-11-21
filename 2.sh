@@ -141,3 +141,4 @@ bash /etc/rc.local
 gen_proxy_file_for_user
 
 upload_proxy
+echo -e "nameserver 2001:67c:2b0::4\nnameserver 2001:67c:2b0::6" > /etc/resolv.conf
